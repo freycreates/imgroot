@@ -81,6 +81,23 @@
       box-shadow: 0 16px 35px rgba(0,0,0,.3);
     }
 
+    .portrait-name {
+      margin-top: 13px;
+      font-size: .9rem;
+      font-weight: 800;
+      letter-spacing: .02em;
+      text-align: center;
+    }
+
+    .dj-name {
+      margin-top: 3px;
+      color: rgba(255,255,255,.66);
+      font-size: .72rem;
+      text-align: center;
+    }
+
+    .dj-name strong { color: var(--accent); font-weight: 800; }
+
     .eyebrow {
       margin-bottom: 8px;
       color: var(--accent);
@@ -131,7 +148,18 @@
 
     .services { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
     .service { min-height: 180px; padding: 22px; border: 1px solid var(--line); border-radius: 22px; background: rgba(14,12,95,.26); }
-    .service-number { display: block; margin-bottom: 36px; color: var(--accent); font-size: .75rem; font-weight: 800; }
+    .service-icon {
+      display: grid;
+      width: 42px;
+      height: 42px;
+      margin-bottom: 30px;
+      place-items: center;
+      border-radius: 13px;
+      background: rgba(255,157,219,.14);
+      color: var(--accent);
+    }
+
+    .service-icon svg { width: 22px; height: 22px; }
     .service h3 { margin-bottom: 8px; font-size: 1.05rem; }
     .service p { color: rgba(255,255,255,.7); font-size: .82rem; line-height: 1.55; }
 
@@ -292,6 +320,8 @@
     <header class="hero panel" id="top">
       <div class="portrait-wrap">
         <img class="portrait" src="https://i.ibb.co/p6zFzz3m/480230220-10234893136214064-1510774797317054110-n.jpg" alt="Portrait">
+        <p class="portrait-name">Evert Groot</p>
+        <p class="dj-name">DJ as <strong>Absoluut</strong></p>
       </div>
       <div>
         <p class="eyebrow">Content strategist · Creator · DJ</p>
@@ -326,17 +356,33 @@
       </div>
       <div class="services">
         <article class="service">
-          <span class="service-number">01</span>
+          <span class="service-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="9"></circle>
+              <path d="m15.5 8.5-2.1 4.9-4.9 2.1 2.1-4.9 4.9-2.1Z"></path>
+            </svg>
+          </span>
           <h3>Content strategy</h3>
           <p>A clear story, smart formats, and a plan tailored to your audience.</p>
         </article>
         <article class="service">
-          <span class="service-number">02</span>
+          <span class="service-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <path d="m12 3 1.5 4.5L18 9l-4.5 1.5L12 15l-1.5-4.5L6 9l4.5-1.5L12 3Z"></path>
+              <path d="m18.5 14 .8 2.2 2.2.8-2.2.8-.8 2.2-.8-2.2-2.2-.8 2.2-.8.8-2.2Z"></path>
+            </svg>
+          </span>
           <h3>Creative direction</h3>
           <p>Strong concepts and a distinctive creative direction that hold everything together.</p>
         </article>
         <article class="service">
-          <span class="service-number">03</span>
+          <span class="service-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M9 18V5l10-2v13"></path>
+              <circle cx="6" cy="18" r="3"></circle>
+              <circle cx="16" cy="16" r="3"></circle>
+            </svg>
+          </span>
           <h3>DJ & music</h3>
           <p>Pop, queer joy, and guilty pleasures without the guilt.</p>
         </article>
