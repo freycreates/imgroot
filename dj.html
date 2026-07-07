@@ -31,11 +31,45 @@
     .page { width: calc(100% - 40px); max-width: 1240px; margin: 0 auto; padding: 20px 0 46px; }
     .nav { display: flex; align-items: center; justify-content: space-between; gap: 20px; padding: 12px 0 20px; }
     .brand { font-family: "Baloo Bhai 2", sans-serif; font-size: 1.25rem; font-weight: 800; text-decoration: none; }
-    .back { color: rgba(255,255,255,.72); font-size: .8rem; font-weight: 700; text-decoration: none; }
+    .back { display: inline-flex; align-items: center; gap: 8px; color: rgba(255,255,255,.72); font-size: .8rem; font-weight: 700; text-decoration: none; }
     .back:hover { color: var(--sand); }
 
+    .css-arrow {
+      position: relative;
+      display: inline-block;
+      width: 14px;
+      height: 14px;
+      flex: 0 0 auto;
+      color: currentColor;
+    }
+
+    .css-arrow::before {
+      content: "";
+      position: absolute;
+      top: 6px;
+      left: 1px;
+      width: 11px;
+      height: 1.5px;
+      border-radius: 2px;
+      background: currentColor;
+    }
+
+    .css-arrow::after {
+      content: "";
+      position: absolute;
+      top: 3px;
+      right: 1px;
+      width: 6px;
+      height: 6px;
+      border-top: 1.5px solid currentColor;
+      border-right: 1.5px solid currentColor;
+      transform: rotate(45deg);
+    }
+
+    .css-arrow.left { transform: rotate(180deg); }
+
     h1, h2, h3 { font-family: "Baloo Bhai 2", sans-serif; line-height: 1.05; }
-    h1 { margin-bottom: 16px; font-size: clamp(3.6rem, 9vw, 7rem); letter-spacing: -.05em; }
+    h1 { margin-bottom: 14px; font-size: clamp(3rem, 7vw, 5rem); letter-spacing: -.05em; }
     h2 { margin-bottom: 16px; font-size: clamp(2.1rem, 5vw, 4rem); letter-spacing: -.035em; }
     h3 { font-size: 1.15rem; }
     p { line-height: 1.7; }
@@ -43,10 +77,10 @@
     .eyebrow { margin-bottom: 10px; color: var(--sand); font-size: .75rem; font-weight: 800; letter-spacing: .12em; text-transform: uppercase; }
     .lead { max-width: 620px; color: rgba(255,255,255,.8); font-size: 1rem; }
 
-    .hero { display: grid; grid-template-columns: .85fr 1.15fr; min-height: 650px; overflow: hidden; border: 1px solid var(--line); border-radius: 24px; background: #111039; }
-    .hero-image { min-height: 540px; }
+    .hero { display: grid; grid-template-columns: .85fr 1.15fr; min-height: 520px; overflow: hidden; border: 1px solid var(--line); border-radius: 24px; background: #111039; }
+    .hero-image { min-height: 460px; }
     .hero-image img { height: 100%; object-fit: cover; object-position: center 38%; }
-    .hero-copy { display: flex; flex-direction: column; justify-content: center; padding: clamp(32px, 6vw, 72px); }
+    .hero-copy { display: flex; flex-direction: column; justify-content: center; padding: clamp(30px, 5vw, 56px); }
     .hero-meta { margin-top: 24px; color: var(--sand); font-weight: 800; }
 
     .actions { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 26px; }
@@ -66,11 +100,11 @@
     .music { background: var(--purple); }
     .music .split-image { order: 2; }
 
-    .gigs { overflow: hidden; border-radius: 24px; background: var(--wine); }
-    .gigs-photo { height: clamp(300px, 48vw, 580px); }
-    .gigs-photo img { height: 100%; object-fit: cover; object-position: center 54%; }
-    .gigs-content { padding: clamp(30px, 5vw, 60px); }
-    .gig-groups { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin-top: 28px; }
+    .gigs { display: grid; grid-template-columns: .85fr 1.15fr; overflow: hidden; border-radius: 24px; background: var(--wine); }
+    .gigs-photo { min-height: 100%; }
+    .gigs-photo img { height: 100%; object-fit: cover; object-position: center; }
+    .gigs-content { padding: clamp(30px, 4vw, 50px); }
+    .gig-groups { display: grid; grid-template-columns: 1fr; gap: 14px; margin-top: 24px; }
     .gig-group { padding: 22px; border: 1px solid rgba(255,255,255,.16); border-radius: 18px; background: rgba(31,15,47,.18); }
     .gig-group h3 { margin-bottom: 13px; }
     .gig-list { display: grid; gap: 8px; list-style: none; color: rgba(255,255,255,.82); font-size: .8rem; line-height: 1.45; }
@@ -88,12 +122,13 @@
 
     @media (max-width: 780px) {
       .page { width: calc(100% - 20px); }
-      .hero, .split, .contact { grid-template-columns: 1fr; }
+      .hero, .split, .gigs, .contact { grid-template-columns: 1fr; }
       .hero { min-height: auto; }
       .hero-image { min-height: 430px; }
       .music .split-image { order: 0; }
       .split-image { min-height: 360px; }
       .gig-groups { grid-template-columns: 1fr; }
+      .gigs-photo { min-height: 360px; }
       .contact-image { min-height: 380px; }
       footer { flex-direction: column; align-items: center; text-align: center; }
     }
@@ -108,11 +143,11 @@
   <main class="page">
     <nav class="nav" aria-label="DJ page navigation">
       <a class="brand" href="dj.html">ABSOLUUT</a>
-      <a class="back" href="index.html#dj-work">← Back to Evert's portfolio</a>
+      <a class="back" href="index.html"><span class="css-arrow left" aria-hidden="true"></span>Evert's homepage</a>
     </nav>
 
     <header class="hero">
-      <div class="hero-image"><img src="assets/dj-cover.jpg" alt="Portrait of Evert Groot, also known as DJ Absoluut"></div>
+      <div class="hero-image"><img src="assets/dj-hero.jpg" alt="Evert Groot performing as DJ Absoluut"></div>
       <div class="hero-copy">
         <p class="eyebrow">Amsterdam-based DJ</p>
         <h1>Absoluut</h1>
@@ -126,7 +161,7 @@
     </header>
 
     <section class="split about" id="about" aria-labelledby="about-title">
-      <div class="split-image"><img src="assets/dj-about.jpg" alt="Absoluut behind the DJ booth"></div>
+      <div class="split-image"><img src="assets/dj-about.png" alt="Portrait of DJ Absoluut"></div>
       <div class="split-copy">
         <p class="eyebrow">About</p>
         <h2 id="about-title">From Amsterdam to international dance floors</h2>
@@ -149,9 +184,8 @@
     </section>
 
     <section class="gigs" id="gigs" aria-labelledby="gigs-title">
-      <div class="gigs-photo"><img src="assets/dj-gigs.jpg" alt="Absoluut performing for a festival crowd"></div>
+      <div class="gigs-photo"><img src="assets/dj-gigs.png" alt="Absoluut performing for a festival crowd"></div>
       <div class="gigs-content">
-        <p class="eyebrow">Selected gigs</p>
         <h2 id="gigs-title">Clubs, festivals, Prides and brands</h2>
         <div class="gig-groups">
           <article class="gig-group">
@@ -202,6 +236,7 @@
         <p class="lead">For bookings, collaborations, weddings, club nights, and brand events, get in touch.</p>
         <div class="contact-links">
           <a class="button primary" href="mailto:evert@imgroot.nl">evert@imgroot.nl</a>
+          <a class="button" href="tel:+31614251004">Call me: +31 6 14 25 10 04</a>
           <a class="button" href="https://www.instagram.com/absoluut/" target="_blank" rel="noopener noreferrer">Instagram</a>
         </div>
       </div>
