@@ -145,6 +145,14 @@
     }
 
     .button.primary { border-color: var(--brochure-wine); background: var(--brochure-wine); color: #fff; }
+    .button.is-disabled {
+      border-color: rgba(255,255,255,.18);
+      background: rgba(255,255,255,.14);
+      color: rgba(255,255,255,.74);
+      cursor: default;
+      pointer-events: none;
+      box-shadow: none;
+    }
     .button svg { width: 17px; height: 17px; flex: 0 0 auto; }
     .button:hover { border-color: var(--brochure-wine); background: var(--brochure-wine); color: #fff; transform: translateY(-2px); box-shadow: 0 10px 25px rgba(0,0,0,.2); }
     .button.primary:hover { border-color: #a71359; background: #a71359; }
@@ -222,6 +230,7 @@
     .portfolio-grid::-webkit-scrollbar { height: 8px; }
     .portfolio-grid::-webkit-scrollbar-track { border-radius: 999px; background: rgba(255,255,255,.08); }
     .portfolio-grid::-webkit-scrollbar-thumb { border-radius: 999px; background: rgba(129,76,148,.85); }
+    .scroll-hint { display: none; }
 
     .project {
       flex: 0 0 min(390px, 86vw);
@@ -362,16 +371,66 @@
 
     .music-section { padding: 28px 34px; }
     .music-section .section-heading { margin-bottom: 18px; }
-    .music-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 10px; }
-    .music-card { display: flex; flex-direction: column; justify-content: space-between; aspect-ratio: 2 / 1; padding: 17px; border: 1px solid rgba(255,255,255,.12); border-radius: 16px; text-decoration: none; }
-    .music-card.spotify { background: linear-gradient(135deg, #252861, #3c3975); }
-    .music-card.soundcloud { background: linear-gradient(135deg, #352948, #503346); }
-    .music-card.bops-spotify { background: linear-gradient(135deg, #342750, #513255); }
-    .music-card.apple-music { background: linear-gradient(135deg, #3c293f, #57303c); }
-    .music-label { display: inline-flex; align-items: center; gap: 7px; font-size: .68rem; font-weight: 800; letter-spacing: .09em; text-transform: uppercase; opacity: .82; }
-    .music-label svg { width: 17px; height: 17px; flex: 0 0 auto; }
-    .music-card h3 { max-width: 400px; font-size: clamp(1rem, 2vw, 1.3rem); }
-    .music-card > .css-arrow { width: 14px; height: 14px; }
+    .music-grid { display: flex; flex-wrap: wrap; gap: 12px; }
+    .music-card {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      min-height: 64px;
+      padding: 12px 18px;
+      border: 1px solid rgba(129,76,148,.28);
+      border-radius: 16px;
+      background: rgba(255,255,255,.95);
+      color: #261c34;
+      text-decoration: none;
+      box-shadow: 0 10px 22px rgba(6,4,42,.11);
+      transition: transform .2s ease, border-color .2s ease, box-shadow .2s ease, background .2s ease, color .2s ease;
+    }
+    .music-card:hover {
+      border-color: rgba(129,76,148,.58);
+      background: #fff;
+      color: var(--brochure-wine);
+      transform: translateY(-2px);
+      box-shadow: 0 14px 28px rgba(6,4,42,.18);
+    }
+    .music-label {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      font-size: clamp(.98rem, 1.4vw, 1.12rem);
+      font-weight: 900;
+      letter-spacing: -.02em;
+      line-height: 1;
+    }
+    .music-text { display: grid; gap: 4px; }
+    .music-title {
+      color: #261c34;
+      font-family: "Baloo Bhai 2", "Manrope", sans-serif;
+      font-size: clamp(.98rem, 1.4vw, 1.12rem);
+      font-weight: 800;
+      letter-spacing: -.02em;
+      line-height: 1.05;
+    }
+    .music-service {
+      color: rgba(38,28,52,.68);
+      font-size: .72rem;
+      font-weight: 800;
+      letter-spacing: -.01em;
+      line-height: 1.1;
+    }
+    .music-card:hover .music-title { color: var(--brochure-wine); }
+    .music-card:hover .music-service { color: rgba(143,0,72,.72); }
+    .music-label svg { width: 19px; height: 19px; flex: 0 0 auto; }
+    .music-card.spotify .music-label svg,
+    .music-card.bops-spotify .music-label svg { color: #159447; }
+    .music-card.soundcloud .music-label svg { color: #ef4b16; }
+    .music-card.apple-music .apple-mark { color: var(--brochure-wine); font-size: 1.35em; line-height: .8; }
+    .music-card > .css-arrow {
+      width: 12px;
+      height: 12px;
+      color: var(--brochure-wine);
+    }
 
     .contact { display: grid; grid-template-columns: 1fr auto; align-items: center; gap: 24px; padding: 38px; }
     .contact p { margin-top: 8px; color: rgba(255,255,255,.75); }
@@ -386,8 +445,7 @@
     }
 
     @media (max-width: 980px) {
-      .music-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-      .music-card { aspect-ratio: 2 / 1; }
+      .music-card { flex: 1 1 calc(50% - 12px); }
     }
 
     @media (max-width: 760px) {
@@ -402,8 +460,21 @@
       .section-copy { margin-top: 8px; }
       .services { grid-template-columns: 1fr; }
       .music-section { padding: 24px 20px; }
-      .music-card { aspect-ratio: 2 / 1; }
-      .project { flex-basis: min(340px, 84vw); }
+      .music-card { flex: 1 1 calc(50% - 12px); }
+      .scroll-hint {
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+        gap: 9px;
+        margin: -8px 2px 12px;
+        color: rgba(255,255,255,.76);
+        font-size: .72rem;
+        font-weight: 800;
+        letter-spacing: .08em;
+        text-transform: uppercase;
+      }
+      .scroll-hint .css-arrow { animation: swipe-cue 1.4s ease-in-out infinite; }
+      .project { flex-basis: min(340px, 78vw); }
       .dj-feature { grid-template-columns: 1fr; padding: 30px 24px; }
       .reel { flex-basis: min(320px, 84vw); }
       .bops { padding: 28px 20px; }
@@ -417,12 +488,16 @@
     }
 
     @media (max-width: 430px) {
-      .music-grid { grid-template-columns: 1fr; }
-      .music-card { aspect-ratio: 2 / 1; }
+      .music-card { flex-basis: 100%; }
     }
 
     @media (prefers-reduced-motion: reduce) {
       *, *::before, *::after { scroll-behavior: auto !important; animation: none !important; transition: none !important; }
+    }
+
+    @keyframes swipe-cue {
+      0%, 100% { transform: translateX(0); }
+      50% { transform: translateX(5px); }
     }
   </style>
 </head>
@@ -509,6 +584,7 @@
         </div>
         <p class="section-copy">A selection of strategy, social content, and creative projects.</p>
       </div>
+      <div class="scroll-hint" aria-hidden="true">Swipe to explore <span class="css-arrow"></span></div>
       <div class="portfolio-grid">
         <article class="project">
           <div class="project-image"><img src="assets/tui-campaign-content.png" alt="Examples of TUI campaign content" loading="lazy"></div>
@@ -664,9 +740,11 @@
               <path d="M8.1 12.1c2.7-.8 6.1-.5 8.4.8"></path>
               <path d="M8.8 14.9c2.2-.6 4.8-.4 6.7.7"></path>
             </svg>
-            Spotify playlist
+            <span class="music-text">
+              <span class="music-title">Italian Pop Girlies 🇮🇹</span>
+              <span class="music-service">Spotify</span>
+            </span>
           </span>
-          <h3>Italian Pop Girlies 🇮🇹</h3>
           <span class="css-arrow up-right" aria-hidden="true"></span>
         </a>
         <a class="music-card soundcloud" href="https://soundcloud.com/absoluut" target="_blank" rel="noopener noreferrer">
@@ -675,9 +753,11 @@
               <path d="M1 11.5h1v4H1zm2-2h1v6H3zm2-1.5h1v7.5H5zm2-1h1v8.5H7zm2 .7h1v7.8H9zm2-1.5h1v9.3h-1z"></path>
               <path d="M13 15.5a5.5 5.5 0 0 1 10.4-2.5H24a2.5 2.5 0 0 1 0 5H13Z" transform="translate(0 -2.5)"></path>
             </svg>
-            SoundCloud
+            <span class="music-text">
+              <span class="music-title">DJ mixes</span>
+              <span class="music-service">SoundCloud</span>
+            </span>
           </span>
-          <h3>DJ mixes</h3>
           <span class="css-arrow up-right" aria-hidden="true"></span>
         </a>
         <a class="music-card bops-spotify" href="https://open.spotify.com/playlist/4oriGmT5x8BeqVLwpiesro?si=wkwScWZXTQajowGhEYNidw&amp;utm_medium=share&amp;utm_source=linktree" target="_blank" rel="noopener noreferrer">
@@ -688,14 +768,15 @@
               <path d="M8.1 12.1c2.7-.8 6.1-.5 8.4.8"></path>
               <path d="M8.8 14.9c2.2-.6 4.8-.4 6.7.7"></path>
             </svg>
-            BOPS on Spotify
+            <span class="music-text">
+              <span class="music-title">BOPS Playlist</span>
+              <span class="music-service">Spotify</span>
+            </span>
           </span>
-          <h3>Queer Pop Party playlist</h3>
           <span class="css-arrow up-right" aria-hidden="true"></span>
         </a>
         <a class="music-card apple-music" href="https://music.apple.com/nl/playlist/bops-queer-pop-party/pl.u-GBaaF7zEve?l=en" target="_blank" rel="noopener noreferrer">
-          <span class="music-label">BOPS on  Music</span>
-          <h3>Queer Pop Party playlist</h3>
+          <span class="music-label"><span class="apple-mark" aria-hidden="true"></span> <span class="music-text"><span class="music-title">BOPS Playlist</span><span class="music-service">Apple Music</span></span></span>
           <span class="css-arrow up-right" aria-hidden="true"></span>
         </a>
       </div>
@@ -737,10 +818,22 @@
         date.textContent = `Next event · ${event.displayDate}`;
         title.textContent = event.title;
         if (event.ticketUrl) {
+          link.textContent = '';
+          link.append('Get tickets ');
+          const arrow = document.createElement('span');
+          arrow.className = 'css-arrow up-right';
+          arrow.setAttribute('aria-hidden', 'true');
+          link.append(arrow);
           link.href = event.ticketUrl;
+          link.classList.remove('is-disabled');
+          link.removeAttribute('aria-disabled');
           link.hidden = false;
         } else {
-          link.hidden = true;
+          link.textContent = 'Tickets coming soon';
+          link.removeAttribute('href');
+          link.classList.add('is-disabled');
+          link.setAttribute('aria-disabled', 'true');
+          link.hidden = false;
         }
       })
       .catch(() => {});
