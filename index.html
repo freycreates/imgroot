@@ -488,7 +488,19 @@
     }
 
     @media (max-width: 430px) {
-      .music-card { flex-basis: 100%; }
+      .music-card {
+        flex-basis: 100%;
+        justify-content: flex-start;
+        padding-inline: 20px;
+        text-align: left;
+      }
+      .music-label {
+        flex: 1 1 auto;
+        min-width: 0;
+        justify-content: flex-start;
+      }
+      .music-text { text-align: left; }
+      .music-card > .css-arrow { margin-left: auto; }
     }
 
     @media (prefers-reduced-motion: reduce) {
@@ -792,7 +804,7 @@
     </section>
 
     <footer>
-      <span>© IM Groot 2026 · Website by <a href="https://freycreates.nl" target="_blank" rel="noopener noreferrer">Frey Creates</a></span>
+      <span>© Evert Groot 2026 · Website by <a href="https://freycreates.nl/" target="_blank" rel="noopener noreferrer">Frey Creates</a></span>
       <div>
         <a href="https://www.instagram.com/absoluut/" target="_blank" rel="noopener noreferrer">Instagram</a>
         <a href="https://www.instagram.com/bops.ams/" target="_blank" rel="noopener noreferrer">BOPS</a>
